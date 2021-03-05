@@ -1,0 +1,22 @@
+Use the following instructions to enable staking in your wallet.
+
+Open your wallet, and make sure your wallet is connected with a node.
+Your wallet is connected when you see the icon .:|| in the left corner of your wallet.
+
+Leave your wallet open and unlocked to stake.
+Keep in mind that stake can only be generated when you have a balance in your wallet.
+
+The following only applies if you encrypted your wallet.
+
+You can unlock your wallet using the following instructions.
+
+Go to Help.
+Click Debug Window.
+This is the console where you will execute all commands.
+
+Type this command to start staking:
+walletpassphrase REPLACE_WITH_YOUR_PASSWORD 9999999 true
+
+Replace the text “REPLACE_WITH_YOUR_PASSWORD” with your password.
+
+The number 9999999 is the amount of seconds you want to leave your wallet unlocked for staking.

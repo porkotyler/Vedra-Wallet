@@ -1,0 +1,288 @@
+Use the following tutorial to setup a block explorer for a X11 coin.
+
+Make sure that you have the following requirement.
+
+- A server or VPS with Ubuntu Server 18.04 installed
+
+Update your Ubuntu machine.
+sudo apt-get update
+sudo apt-get upgrade
+
+Install the required dependencies.
+sudo apt-get install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils python3 libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev libboost-all-dev libboost-program-options-dev
+sudo apt-get install libminiupnpc-dev libzmq3-dev libprotobuf-dev protobuf-compiler unzip software-properties-common libkrb5-dev mongodb nodejs npm git nano screen
+
+Install Berkeley DB.
+sudo add-apt-repository ppa:bitcoin/bitcoin
+sudo apt-get update
+sudo apt-get install libdb4.8-dev libdb4.8++-dev
+
+Go to your home directory.
+cd $HOME
+
+Note: replace “examplecoin” with the name of your coin.
+Note: replace “6gs39011kick8xmqutpkrvi92xx5kwev4ykanlv1ls0ouuae5x” with the coinID of your coin.
+
+Download the daemon and tools from MyCoin. (Available for a paid coin)
+wget "https://dl.walletbuilders.com/download?customer=6gs39011kick8xmqutpkrvi92xx5kwev4ykanlv1ls0ouuae5x&filename=examplecoin-daemon-linux.tar.gz" -O examplecoin-daemon-linux.tar.gz
+wget "https://dl.walletbuilders.com/download?customer=6gs39011kick8xmqutpkrvi92xx5kwev4ykanlv1ls0ouuae5x&filename=examplecoin-qt-linux.tar.gz" -O examplecoin-qt-linux.tar.gz
+
+Extract the tar files.
+tar -xzvf examplecoin-daemon-linux.tar.gz
+tar -xzvf examplecoin-qt-linux.tar.gz
+
+Install the daemon and tools.
+sudo mv examplecoind examplecoin-cli examplecoin-tx /usr/bin/
+
+Create the config file.
+mkdir $HOME/.examplecoin
+nano $HOME/.examplecoin/examplecoin.conf
+
+Paste the following lines in examplecoin.conf.
+rpcuser=rpc_examplecoin
+rpcpassword=CNsahKWiZpMzFxdvb9R7vKuAvYWRXqr24EfCkdjz
+rpcallowip=127.0.0.1
+listen=1
+server=1
+txindex=1
+daemon=1
+
+Start your daemon with the following command.
+examplecoind
+
+Open mongodb.
+mongo
+
+Create the database “explorerdb”.
+use explorerdb
+
+Note: replace the value “414uq3EhKDNX76f7DZIMszvHrDMytCnzFevRgtAv” with a unique password.
+
+Create the database user.
+db.createUser( { user: "iquidus", pwd: "414uq3EhKDNX76f7DZIMszvHrDMytCnzFevRgtAv", roles: [ "readWrite" ] } )
+
+Close mongodb.
+exit
+
+Go to your home directory.
+cd $HOME
+
+Download iquidus explorer.
+git clone https://github.com/walletbuilders/iquidus-explorer explorer
+
+Install iquidus explorer.
+cd explorer && npm install --production
+
+Update the explorer module for x11.
+wget https://raw.githubusercontent.com/walletbuilders/iquidus-x11-patch/master/iquidus_x11_patch.diff
+patch -p1 < iquidus_x11_patch.diff
+
+Create the settings file.
+cp ./settings.json.template ./settings.json
+
+Open the settings file.
+nano settings.json
+
+Change the marked values.
+
+title - Change the value “IQUIDUS” with the name of your coin.
+
+address - Change the value “127.0.0.1” with the IP address of your server.
+
+coin - Change the value “Darkcoin” with the name of your coin.
+
+symbol - Change the value “DRK” with the abbreviation of your coin.
+
+password - Change the value “3xp!0reR” with the mongodb password.
+
+user - Change the value “darkcoinrpc” with the RPC username of your coin.
+
+pass - Change the value “123gfjk3R3pCCVjHtbRde2s5kzdf233sa” with the RPC password of your coin.
+
+confirmations - Change the value “40” with the transaction confirmations of your coin.
+
+api - Change the value “true” to “false”.
+
+markets - Change the value “true” to “false”.
+
+twitter - Change the value “true” to “false”.
+
+Original settings.json.
+
+
+/*
+  This file must be valid JSON. But comments are allowed
+
+  Please edit settings.json, not settings.json.template
+*/
+{
+  // name your instance!
+  "title": "IQUIDUS",
+
+  "address": "127.0.0.1:3001",
+
+  // coin name
+  "coin": "Darkcoin",
+
+  // coin symbol
+  "symbol": "DRK",
+
+...
+
+  // database settings (MongoDB)
+  "dbsettings": {
+    "user": "iquidus",
+    "password": "3xp!0reR",
+    "database": "explorerdb",
+    "address": "localhost",
+    "port": 27017
+  },
+
+  //update script settings
+  "update_timeout": 10,
+  "check_timeout": 250,
+
+  // wallet settings
+  "wallet": {
+    "host": "localhost",
+    "port": 9332,
+    "user": "darkcoinrpc",
+    "pass": "123gfjk3R3pCCVjHtbRde2s5kzdf233sa"
+  },
+
+  // confirmations
+  "confirmations": 40,
+
+  // language settings
+  "locale": "locale/en.json",
+
+  // menu settings
+  "display": {
+    "api": true,
+    "markets": true,
+    "richlist": true,
+    "twitter": true,
+    "facebook": false,
+    "googleplus": false,
+    "youtube": false,
+    "search": true,
+    "movement": true,
+    "network": true
+  },
+
+
+
+Example settings.json.
+
+
+/*
+  This file must be valid JSON. But comments are allowed
+
+  Please edit settings.json, not settings.json.template
+*/
+{
+  // name your instance!
+  "title": "Examplecoin",
+
+  "address": "198.51.100.1:3001",
+
+  // coin name
+  "coin": "Examplecoin",
+
+  // coin symbol
+  "symbol": "EXP",
+
+...
+
+  // database settings (MongoDB)
+  "dbsettings": {
+    "user": "iquidus",
+    "password": "414uq3EhKDNX76f7DZIMszvHrDMytCnzFevRgtAv",
+    "database": "explorerdb",
+    "address": "localhost",
+    "port": 27017
+  },
+
+  //update script settings
+  "update_timeout": 10,
+  "check_timeout": 250,
+
+  // wallet settings
+  "wallet": {
+    "host": "localhost",
+    "port": 4763,
+    "user": "rpc_examplecoin",
+    "pass": "CNsahKWiZpMzFxdvb9R7vKuAvYWRXqr24EfCkdjz"
+  },
+
+  // confirmations
+  "confirmations": 6,
+
+  // language settings
+  "locale": "locale/en.json",
+
+  // menu settings
+  "display": {
+    "api": false,
+    "markets": false,
+    "richlist": true,
+    "twitter": false,
+    "facebook": false,
+    "googleplus": false,
+    "youtube": false,
+    "search": true,
+    "movement": true,
+    "network": true
+  },
+
+
+Save the settings file.
+
+----------optional----------
+
+Replace the default logo with your own logo.
+
+Note: The file must be a PNG file with a width and height of 128 px.
+
+Overwrite the file “logo.png” inside the path “explorer/public/images/”.
+
+Replace the default favicon with your own favicon.
+
+Note 1: The file must be an ICO file with a width and height of 16 px.
+Note 2: You can convert your PNG file to an ICO file on Online ICO converter.
+
+Overwrite the file “favicon.ico” inside the path “explorer/public/”.
+
+----------optional----------
+
+Get the path to your block explorer.
+cd $HOME/explorer
+pwd
+
+Example output
+/root/explorer
+
+Open crontab
+crontab -e
+
+Change the path “/root/explorer” with the path to your block explorer.
+
+Paste the following lines to the bottom of the crontab.
+*/1 * * * * cd /root/explorer && /usr/bin/nodejs scripts/sync.js index update > /dev/null 2>&1
+*/5 * * * * cd /root/explorer && /usr/bin/nodejs scripts/peers.js > /dev/null 2>&1
+
+Save the crontab.
+
+A screen session will remain open when the SSH connection is disconnected.
+You can disconnect from a screen session using the keyboard combination ctrl + a + d.
+
+Start a screen session.
+screen
+
+Start your block explorer.
+cd $HOME/explorer
+npm start
+
+You can access the block explorer on the IP of your server on port 3001.
+
+E.G. http://198.51.100.1:3001

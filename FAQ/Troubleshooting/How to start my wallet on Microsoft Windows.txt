@@ -1,0 +1,9 @@
+Windows SmartScreen is a new feature in Windows 10 to help protect users from running unverified software downloaded from the internet.
+It's a nice feature but it sometimes blocks our wallets.
+
+Use the following instructions to unblock your wallet.
+
+1) Right click the wallet (exe) and select "Properties".
+2) Select "Unblock".
+3) Click on the button "OK".
+4) You can now start the wallet (exe).

@@ -1,0 +1,18 @@
+You can check if your wallets are on the same fork by comparing the hash of a block.
+
+You can show the current block height of your wallet using the command "getblockcount".
+This will output a number.
+
+E.G. 1337
+
+Use the command "getblockhash" to show the hash of a block.
+
+Example usage (show the hash of block 1337).
+
+getblockhash 1337
+
+This will output a random string.
+
+E.G. 00000000839a8e6886ab5951d76f411475428afc90947ee320161bbf18eb6048
+
+Compare the output of both wallets and make sure that the hash is the same.

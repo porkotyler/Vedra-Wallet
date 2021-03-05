@@ -1,0 +1,48 @@
+Use the following instructions to mine a block on macOS.
+
+Open your wallet, and make sure your wallet is connected with a node.
+Your wallet is connected when you see the icon Wallet connections scrypt and SHA256 in the lower right corner of your wallet.
+
+The message “Syncing Headers (0,0%)” will disappear once you mine your first block.
+
+Note: replace “examplecoin” with the name of your coin.
+
+Close your wallet and create the file examplecoin.conf in the folder “$HOME/Library/Application Support/Examplecoin/”.
+
+Paste the following text into examplecoin.conf and save the file.
+rpcuser=rpc_examplecoin
+rpcpassword=pifw1fqxfkdd23n59rcr63sqrfiqkw184uxb0blo
+rpcallowip=127.0.0.1
+listen=1
+server=1
+addnode=node1.walletbuilders.com
+
+Open your wallet.
+
+Create a .sh file named mine.sh in the same folder where you extracted example-cli with the following content.
+#!/bin/bash
+SCRIPT_PATH=`pwd`;
+cd $SCRIPT_PATH
+echo Press [CTRL+C] to stop mining.
+while :
+do
+./examplecoin-cli generate 1
+done
+
+Save the file mine.sh.
+
+Click the Finder icon in your dock.
+Click Go.
+Click Utilities.
+Double-click Terminal.
+
+Go to the directory where you extracted examplecoin-qt.
+E.G. cd Downloads
+
+Execute the following command in Terminal to make mine.sh executable.
+chmod +x mine.sh
+
+Execute the following command in Terminal to start mining your first block.
+./mine.sh
+
+It will take about +/- 30 minutes to mine your first block, depending on your computer hardware.

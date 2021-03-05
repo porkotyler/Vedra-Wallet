@@ -1,0 +1,3 @@
+The message “Generated but not accepted” is shown when you mine an “orphan” block.
+
+This can be caused when multiple wallets stake the same block, the wallet that first solves the block receives the block reward.

@@ -1,0 +1,15 @@
+A Quark based coin must meet the following requirements to get synchronized and start proof of stake (PoS).
+
+- 2 enabled masternodes both with a unique external IP address.
+
+Instructions to setup a masternode can be found in the following article:
+https://www.walletbuilders.com/learning-center/article/33-how-do-i-setup-a-masternode-quark
+
+- The wallet and masternodes need to be aware of each other.
+
+You can make the wallet and masternodes aware of each other by adding the IP addresses of the machines to the individual config files.
+
+Instructions to add a node to a config file can be found in the following article:
+https://www.walletbuilders.com/learning-center/article/how-do-i-connect-with-a-node
+
+It is advised to setup 2 masternodes as soon as you start mining.

@@ -1,0 +1,16 @@
+Use the following instructions to enable staking in your wallet.
+
+Open your wallet, and make sure you are connected to another wallet.
+You are connected if you see the icon .) in the lower right corner of your wallet.
+
+Leave your wallet open and unlocked to stake.
+Keep in mind that stake can only be generated when you have a balance in your wallet.
+
+The following only applies if you encrypted your wallet.
+
+You can unlock your wallet to stake using the following instructions.
+
+1) Go to Settings > Unlock Wallet.
+2) Tick the “For anonymization and staking only” option.
+3) Enter your passphrase.
+4) Click the button OK.

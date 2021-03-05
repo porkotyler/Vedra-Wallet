@@ -1,0 +1,19 @@
+Use the following instructions to setup a node on Windows Server.
+
+Download the Windows QT wallet from MyCoin and upload the file to your Windows Server.
+
+Note: replace “examplecoin” with the name of your coin.
+
+Extract the zip file examplecoin-qt.zip.
+
+Close your wallet and create the file examplecoin.conf in the folder “%APPDATA%\examplecoin\”.
+
+Paste the following text into examplecoin.conf and save the file.
+rpcuser=rpc_examplecoin
+rpcpassword=69c863e3356d3dae95df454a1
+rpcallowip=127.0.0.1
+listen=1
+server=1
+txindex=1
+
+Your wallet will function as a node when you start your wallet.

@@ -1,0 +1,12 @@
+Use the following instructions to manually connect your wallet with a node.
+
+Note: replace “examplecoin” with the name of your coin.
+
+Close your wallet and create the file examplecoin.conf in the folder “%APPDATA%\examplecoin\”.
+
+Paste the following text into examplecoin.conf and save the file.
+addnode=REPLACE_WITH_YOUR_IP_OR_HOSTNAME
+
+Replace the text “REPLACE_WITH_YOUR_IP_OR_HOSTNAME” with an IP address or hostname.
+
+E.G. addnode=136.144.171.201 or addnode=node1.walletbuilders.com

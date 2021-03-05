@@ -1,0 +1,8 @@
+Use the following instructions to restore a backup of your wallet.
+
+Note: replace “examplecoin” with the name of your coin.
+
+1) Close your wallet.
+2) Open the folder “%APPDATA%\examplecoin\”.
+3) Make an (extra) backup of the file “wallet.dat”.
+4) Copy the file “wallet.dat” from your original backup to the folder “%APPDATA%\examplecoin\”.

@@ -1,0 +1,5 @@
+The message “x hours behind” or “out-of-sync” is triggered when the last block is mined longer ago than the block time of your coin.
+
+E.G. Blocktime : 10 minutes, last block mined 30 minutes ago.
+
+This message will disappear when the first or next block is mined.

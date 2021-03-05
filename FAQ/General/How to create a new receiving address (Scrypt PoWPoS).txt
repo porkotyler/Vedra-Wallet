@@ -1,0 +1,5 @@
+You can create a new receiving address using the following instructions.
+
+1) Open your QT wallet.
+2) Click on the button "Receive".
+3) Click on the button "New address" to generate a new receiving address.

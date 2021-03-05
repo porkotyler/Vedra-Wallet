@@ -1,0 +1,57 @@
+Use the following instructions to mine a block on Ubuntu Server 18.04.
+
+Update your Ubuntu machine.
+sudo apt-get update
+sudo apt-get upgrade
+
+Install the required dependencies.
+sudo apt-get install build-essential libtool autotools-dev autoconf pkg-config libboost-all-dev libssl1.0-dev libprotobuf-dev protobuf-compiler libminiupnpc-dev libqrencode-dev libdb-dev libdb++-dev make libcurl4-openssl-dev
+
+Note: replace “examplecoin” with the name of your coin.
+Note: replace “6gs39011kick8xmqutpkrvi92xx5kwev4ykanlv1ls0ouuae5x” with the coinID of your coin.
+
+Download the daemon from MyCoin. (Available for a paid coin)
+wget "https://dl.walletbuilders.com/download?customer=6gs39011kick8xmqutpkrvi92xx5kwev4ykanlv1ls0ouuae5x&filename=examplecoin-daemon-linux.tar.gz" -O examplecoin-daemon-linux.tar.gz
+
+Extract the tar file.
+tar -xzvf examplecoin-daemon-linux.tar.gz
+
+Install the daemon.
+sudo mv examplecoind /usr/bin/
+
+Create the config file.
+mkdir $HOME/.examplecoin
+nano $HOME/.examplecoin/examplecoin.conf
+
+Paste the following lines in examplecoin.conf.
+rpcuser=rpc_examplecoin
+rpcpassword=69c863e3356d3dae95df454a1
+rpcallowip=127.0.0.1
+listen=1
+server=1
+txindex=1
+daemon=1
+
+Start the daemon.
+examplecoind
+
+Use the following commands to compile and install minerd.
+wget https://github.com/walletbuilders/cpuminer/releases/download/v2.5.0/pooler-cpuminer-2.5.0.tar.gz
+tar -xzvf pooler-cpuminer-2.5.0.tar.gz
+cd cpuminer-2.5.0/
+./configure CFLAGS="-O3"
+make
+sudo cp minerd /usr/bin
+
+Create a file named mine.sh and paste the following text into mine.sh.
+minerd --url=http://127.0.0.1:4210 --userpass=rpc_user:8cde5e64e7297b1cb4c495d1a
+
+Save the file mine.sh.
+
+Make the file executable.
+chmod +x mine.sh
+
+Execute mine.sh to start mining your first block.
+./mine.sh
+
+It will take about +/- 30 minutes to mine your first block, depending on your computer hardware.

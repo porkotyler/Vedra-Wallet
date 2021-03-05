@@ -1,0 +1,5 @@
+A node distributes your blockchain among the people who use your coin.
+The second feature of a node is that it verifies the transactions of your coin.
+
+It is not required that you run a hosted node on our hardware.
+You can setup a node on your own VPS using the instructions in our learning center.

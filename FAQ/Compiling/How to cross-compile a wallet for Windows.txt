@@ -1,0 +1,79 @@
+Use the following instructions to cross-compile a wallet for Windows using Ubuntu Server 18.04.
+
+Update your Ubuntu machine.
+sudo apt-get update
+sudo apt-get upgrade
+
+Install the required dependencies.
+sudo apt-get install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils python3 curl libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev libboost-all-dev libboost-program-options-dev libminiupnpc-dev libzmq3-dev libgmp3-dev libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler libqrencode-dev unzip doxygen cmake nsis wine-stable wine64 bc
+
+Install BLS signatures.
+cd ~/
+wget https://github.com/codablock/bls-signatures/archive/v20181101.zip
+unzip v20181101.zip
+cd bls-signatures-20181101
+cmake .
+sudo make install
+
+Create a directory for the source code.
+cd ~/
+mkdir source_code
+cd source_code
+
+Note: replace “examplecoin” with the name of your coin.
+Note: replace “6gs39011kick8xmqutpkrvi92xx5kwev4ykanlv1ls0ouuae5x” with the coinID of your coin.
+
+Download the source code from MyCoin. (Available for a paid coin)
+wget "https://dl.walletbuilders.com/download?customer=6gs39011kick8xmqutpkrvi92xx5kwev4ykanlv1ls0ouuae5x&filename=examplecoin-source.tar.gz" -O examplecoin-source.tar.gz
+
+Extract the tar file.
+tar -xzvf examplecoin-source.tar.gz
+
+Build a 32-bit wallet
+
+Install the following dependencies.
+sudo apt install g++-mingw-w64-i686 mingw-w64-i686-dev
+
+Set the default i686-w64-mingw32-gcc and i686-w64-mingw32-g++ compiler option to posix.
+sudo update-alternatives --set i686-w64-mingw32-gcc /usr/bin/i686-w64-mingw32-gcc-posix
+sudo update-alternatives --set i686-w64-mingw32-g++ /usr/bin/i686-w64-mingw32-g++-posix
+
+Build i686-w64-mingw32-g++.
+PATH=$(echo "$PATH" | sed -e 's/:\/mnt.*//g')
+cd depends
+
+The following command will take +/- 30 minutes to complete.
+make HOST=i686-w64-mingw32
+cd ..
+
+Execute the following commands to compile the wallet.
+./autogen.sh
+CONFIG_SITE=$PWD/depends/i686-w64-mingw32/share/config.site ./configure --prefix=/
+make
+
+The compiling will take about 60 minutes depending on your system hardware.
+Build a 64-bit wallet
+
+Install the following dependencies.
+sudo apt install g++-mingw-w64-x86-64
+
+Set the default x86_64-w64-mingw32-g++ compiler option to posix.
+sudo update-alternatives --config x86_64-w64-mingw32-g++
+
+Build x86_64-w64-mingw32-g++.
+PATH=$(echo "$PATH" | sed -e 's/:\/mnt.*//g')
+cd depends
+
+The following command will take +/- 30 minutes to complete.
+make HOST=x86_64-w64-mingw32
+cd ..
+
+Execute the following commands to compile the wallet.
+./autogen.sh
+CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/
+make
+
+The compiling will take about 60 minutes depending on your system hardware.
+
+Your compiled GUI wallet named examplecoin-qt.exe can be found in the folder “src/qt” when compiling is finished.
+Client tools examplecoin-cl.exe, examplecoin-tx.exe and the daemon examplecoind.exe can be found in the folder “src” when compiling is finished.
