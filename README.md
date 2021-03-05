@@ -15,6 +15,7 @@ Because of the high volume of files you’ll find everything you need (including
 ## Authors
 
 * **Pantelis Kassotis** - *Initial work* - [Portfolio](https://panteliskassotis.com/)
+* **Steam Group** - *Contributors* - [Group Page](https://steamcommunity.com/groups/vxyz)
 
 ## License
 
