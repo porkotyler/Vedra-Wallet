@@ -4,7 +4,7 @@
 
 Scrypt-based implementation of Vedra.
 
-Because of the high volume of files you’ll find everything you need (including the entire source code) in .zip form inside the “Vedra Multi-OS Wallets” file. Feel free to use Vedra and experiment with it however you like. The goal is to bring a universal microtransaction currency to life so the more game developers adopt it the better it’s going to get.
+Because of the high volume of files you’ll find everything you need (including the entire source code) in .zip form inside the “Vedra Multi-OS Wallets” file. Feel free to use Vedra and experiment with it however you like. The goal is to bring a universal microtransaction currency to life so the more game developers adopt it the better it’s going to get. The Vedra smallest unit (satoshi) is called a "Gaben" after Gabe Newell so vedra cents are called gabens. Since this currency is meant to be used by Steamworks developers I thought it would be funny.
 
 ## Authors
 
