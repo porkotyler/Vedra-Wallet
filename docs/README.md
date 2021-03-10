@@ -1,4 +1,4 @@
-## Vedra Coin (VXYZ) Is A Gaming Microtransactions Cryptocurrency!
+## Vedra Coin (VXYZ) Is A Universal Gaming Microtransactions Cryptocurrency!
 
 Scrypt-based and video game friendly implementation of Vedra. By integrating Vedra into their video game, game developers can cut their ties with external payment mechanisms. Let’s say there was a new massively multiplayer online role-playing game (MMORPG) called "Lord Gaben" and it had its own in-game currency called "Gabens", a gaming cryptocurrency. Players could convert their current crypto into Gabens using a dedicated payment portal and then use it to buy in-game gear and cosmetics. For the developer, it could give them more control and put an end to the hassle of regional pricing. For the players, it could be a more streamlined payment system with prices being measured according to the value of Paxcoins—in short, it’s likely to be cheaper.
 
