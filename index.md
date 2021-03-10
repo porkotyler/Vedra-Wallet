@@ -1,37 +1,22 @@
-## Welcome to GitHub Pages
+![](https://i.imgur.com/fZ7839O.jpg)
 
-You can use the [editor on GitHub](https://github.com/vedra-xyz/wallet/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## Vedra Coin (VXYZ)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Scrypt-based and video game friendly implementation of Vedra.
 
-### Markdown
+By integrating Vedra into their video game, game developers can cut their ties with external payment mechanisms. Let’s say there was a new massively multiplayer online role-playing game (MMORPG) called "Lord Gaben" and it had its own in-game currency called "Gabens", a gaming cryptocurrency. Players could convert their current crypto into Gabens using a dedicated payment portal and then use it to buy in-game gear and cosmetics. For the developer, it could give them more control and put an end to the hassle of regional pricing. For the players, it could be a more streamlined payment system with prices being measured according to the value of Paxcoins—in short, it’s likely to be cheaper.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Additionally, with the blockchain powerhouse backing the entire currency system, players’ items would be recorded on a secure ledger—protecting them from accidental erasures, technical problems, or bad servers. Suppose the developers of Lord Gaben were to create more games. In that case, the blockchain could also be a new way of item and currency sharing between entirely different games, creating a new kind of gaming ecosystem. This means that in-game items could potentially take on the form and value outside the games they were originally made for, kind of like physical goods.
 
-```markdown
-Syntax highlighted code block
+Besides adding a bigger bang for the gamer’s buck, cryptocurrencies are also incredibly secure and private. There have already been many instances in the gaming industry where large networks are hacked with users’ credit card information being leaked online and sold in underground markets. Cryptocurrencies provide a secure, private, and even transparent mode of payment that is unparalleled.
 
-# Header 1
-## Header 2
-### Header 3
+Because of the high volume of files you’ll find everything you need (including the entire source code) in .zip form inside the “Vedra Multi-OS Wallets” file. Feel free to use Vedra and experiment with it however you like. The goal is to bring a universal microtransaction currency to life so the more game developers adopt it the better it’s going to get. The Vedra smallest unit (satoshi) is called a "Gaben" after Gabe Newell so vedra cents are called gabens. Since this currency is meant to be used by Steamworks developers I thought it would be funny.
 
-- Bulleted
-- List
+## Authors
 
-1. Numbered
-2. List
+* **Pantelis Kassotis** - *Initial work* - [Portfolio](https://panteliskassotis.com/)
+* **Steam Group** - *Contributors* - [Group Page](https://steamcommunity.com/groups/vxyz)
 
-**Bold** and _Italic_ and `Code` text
+## License
 
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/vedra-xyz/wallet/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+Vedra coin is licensed under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html).
