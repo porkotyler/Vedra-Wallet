@@ -1,0 +1,7 @@
+Use the following instructions to create a backup of your wallet.
+
+Note: replace “examplecoin” with the name of your coin.
+
+1) Close your wallet.
+2) Open the folder “%APPDATA%\examplecoin\”.
+3) Copy the file “wallet.dat” to a safe location.

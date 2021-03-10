@@ -1,0 +1,7 @@
+You can send a coins to another address using the following instructions.
+
+1) Open your QT wallet.
+2) Click on the button "Send".
+3) Enter the receiving address after "Pay To:".
+4) Enter the amount of coins you want to send after "Amount:".
+5) Click on the button "Send" to send the transaction.

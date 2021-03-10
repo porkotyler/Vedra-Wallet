@@ -1,0 +1,39 @@
+Use the following instructions to setup a node on Ubuntu Server 18.04.
+
+Install Ubuntu Server 18.04 on a VPS.
+
+Update your Ubuntu machine.
+sudo apt-get update
+sudo apt-get upgrade
+
+Install the required dependencies.
+sudo apt-get install libboost-filesystem-dev libboost-program-options-dev libboost-thread-dev libdb-dev libdb++-dev libminiupnpc-dev
+
+Note: replace “examplecoin” with the name of your coin.
+Note: replace “6gs39011kick8xmqutpkrvi92xx5kwev4ykanlv1ls0ouuae5x” with the coinID of your coin.
+
+Download the daemon from MyCoin. (Available for a paid coin)
+wget "https://dl.walletbuilders.com/download?customer=6gs39011kick8xmqutpkrvi92xx5kwev4ykanlv1ls0ouuae5x&filename=examplecoin-daemon-linux.tar.gz" -O examplecoin-daemon-linux.tar.gz
+
+Extract the tar file.
+tar -xzvf examplecoin-daemon-linux.tar.gz
+
+Install the daemon.
+sudo mv examplecoind /usr/bin/
+
+Create the config file.
+mkdir $HOME/.examplecoin
+nano $HOME/.examplecoin/examplecoin.conf
+
+Paste the following lines in examplecoin.conf.
+rpcuser=rpc_examplecoin
+rpcpassword=69c863e3356d3dae95df454a1
+rpcallowip=127.0.0.1
+listen=1
+server=1
+txindex=1
+staking=0
+daemon=1
+
+Start your node with the following command.
+examplecoind

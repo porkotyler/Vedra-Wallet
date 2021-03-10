@@ -1,0 +1,10 @@
+The message “You need to rebuild the database using -reindex to change -txindex.” is caused by the setting “txindex” in your config file.
+
+Use the following instructions to fix this.
+
+Note: replace “examplecoin” with the name of your coin.
+
+1) Close your wallet.
+2) Make a backup of the folder “%APPDATA%\examplecoin\”.
+3) Remove everything in the folder “%APPDATA%\examplecoin\” except wallet.dat and examplecoin.conf.
+4) Start your wallet.

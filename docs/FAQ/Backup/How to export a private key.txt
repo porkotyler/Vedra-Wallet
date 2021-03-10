@@ -1,0 +1,26 @@
+Use the following instructions to export the private key of an address in your wallet.
+
+1) Open the console of your wallet.
+
+2) Unlocking your wallet is only required when you encrypted your wallet with a password.
+
+Unlock your wallet using the following command:
+walletpassphrase yourpassword 60
+
+Replace the text “yourpassword” with the password used to encrypt your wallet.
+The number 60 is the amount of seconds your wallet is unlocked.
+
+Example:
+walletpassphrase topsecretpassword 60
+
+3) Export your private key using the following command:
+dumpprivkey yourwalletaddress
+
+Replace the text “yourwalletaddress” with an actual wallet address.
+
+Example:
+dumpprivkey TQhPf7kn6mDvi7CQVqdktP4dBgqRkugu6s
+
+Example output:
+
+VZt9WMWuJF5zbTCJSuX9cwZdtuMzPhz7EkAZUFBxsvak33wg8Kvr

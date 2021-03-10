@@ -1,0 +1,22 @@
+Use the following instructions to import the private key of an address in your wallet.
+
+1) Open the console of your wallet.
+
+2) Unlocking your wallet is only required when you encrypted your wallet with a password.
+
+Unlock your wallet using the following command:
+walletpassphrase yourpassword 60
+
+Replace the text “yourpassword” with the password used to encrypt your wallet.
+The number 60 is the amount of seconds your wallet is unlocked.
+
+Example:
+walletpassphrase topsecretpassword 60
+
+3) Import your private key using the following command:
+importprivkey yourprivatekey
+
+Replace the text “yourprivatekey” with your private key.
+
+Example:
+importprivkey VZt9WMWuJF5zbTCJSuX9cwZdtuMzPhz7EkAZUFBxsvak33wg8Kvr

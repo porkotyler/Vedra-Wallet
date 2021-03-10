@@ -1,0 +1,18 @@
+Use the following instructions to mine a block.
+
+Open your wallet, and make sure your wallet is connected with a node.
+Your wallet is connected when you see the icon "Wallet connections" quark in the lower right corner of your wallet.
+
+Go to Help.
+Click Debug Window.
+This is the console where you will execute all commands.
+
+Type this command to start mining your first block:
+setgenerate true -1
+
+If you want to use a specific number of CPU cores, instead of -1, type the number of cores.
+
+You can type the following command to see the status of generation.
+getmininginfo
+
+It will take about +/- 5 minutes to mine your first block, depending on your computer hardware.

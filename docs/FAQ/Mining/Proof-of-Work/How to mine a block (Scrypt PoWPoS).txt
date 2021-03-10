@@ -1,0 +1,32 @@
+Use the following instructions to mine a block.
+
+Open your wallet, and make sure your wallet is connected with a node.
+Your wallet is connected when you see the icon Wallet connections in the left corner of your wallet.
+
+The message “Synchronizing with network...” will disappear once you mine your first block.
+
+Note: replace “examplecoin” with the name of your coin.
+
+Close your wallet and create the file examplecoin.conf in the folder “%APPDATA%\examplecoin\”.
+
+Paste the following text into examplecoin.conf and save the file.
+rpcuser=rpc_user
+rpcpassword=8cde5e64e7297b1cb4c495d1a
+rpcallowip=127.0.0.1
+rpcport=4210
+listen=1
+server=1
+addnode=node1.walletbuilders.com
+
+Open your wallet.
+
+Download cpuminer from here and extract the zip file.
+
+Create a .bat file named mine.bat in the same folder where you extracted cpuminer and paste the following text into mine.bat.
+minerd --url=http://127.0.0.1:4210 --userpass=rpc_user:8cde5e64e7297b1cb4c495d1a
+
+Save the file.
+
+Execute mine.bat to start mining your first block.
+
+It will take about +/- 30 minutes to mine your first block, depending on your computer hardware.

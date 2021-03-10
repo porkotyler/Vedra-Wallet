@@ -1,0 +1,10 @@
+The message “Incorrect or no genesis block found. Wrong datadir for network” is caused by a different blockchain with the same name.
+
+Use the following instructions to fix this.
+
+Note: replace “examplecoin” with the name of your coin.
+
+1) Close your wallet.
+2) Make a backup of the folder “%APPDATA%\examplecoin\”.
+3) Remove the folder “%APPDATA%\examplecoin\”.
+4) Start your wallet.

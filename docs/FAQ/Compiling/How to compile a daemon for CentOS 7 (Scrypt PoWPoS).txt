@@ -1,0 +1,42 @@
+Use the following instructions to compile a daemon for CentOS 7.
+
+Update your CentOS machine.
+yum update -y
+
+Install the EPEL repository.
+yum install -y epel-release
+
+Install the required dependencies.
+yum install -y gcc-c++ boost-devel libdb4-cxx libdb4-cxx-devel openssl-devel miniupnpc-devel wget unzip
+
+Install Berkeley DB from source code.
+cd $HOME
+wget https://download.oracle.com/berkeley-db/db-4.8.30.zip
+unzip db-4.8.30.zip
+cd db-4.8.30
+cd build_unix/
+../dist/configure --prefix=/usr/local --enable-cxx
+make
+make install
+
+Create a directory for the source code.
+cd ~/
+mkdir source_code
+cd source_code
+
+Note: replace “examplecoin” with the name of your coin.
+Note: replace “6gs39011kick8xmqutpkrvi92xx5kwev4ykanlv1ls0ouuae5x” with the coinID of your coin.
+
+Download the source code from MyCoin. (Available for a paid coin)
+wget "https://dl.walletbuilders.com/download?customer=6gs39011kick8xmqutpkrvi92xx5kwev4ykanlv1ls0ouuae5x&filename=examplecoin-source.tar.gz" -O examplecoin-source.tar.gz
+
+Extract the tar file.
+tar -xzvf examplecoin-source.tar.gz
+
+Execute the following commands to compile the daemon.
+cd src/
+make -f makefile.unix RELEASE=1
+
+The compiling will take about 60 minutes depending on your system hardware.
+
+Your compiled daemon named examplecoind can be found in the folder “src” when compiling is finished.

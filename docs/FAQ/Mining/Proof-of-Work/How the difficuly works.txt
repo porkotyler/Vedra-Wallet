@@ -1,0 +1,16 @@
+The time it takes to mine a block depends on the difficulty of your coin and the used hashes (mining speed) of your CPU, GPU, or ASIC.
+
+Your coin re-calculates a new difficulty every couple of blocks, the exact amount of blocks is defined using the values “Target spacing” and “Target timespan”.
+
+The value “Target spacing” defines how long it should take to mine a block.
+The value “Target timespan” defines when the difficulty should be changed.
+
+The amount of blocks it takes before your coin re-calculates the new difficulty is:
+
+Amount of blocks difficulty change = “Target timespan” / “Target spacing”.
+
+It sometimes can take more or less time to mine a block because these values are re-calculated.
+
+The following page explains in-depth how the difficulty works for Bitcoin.
+
+Difficulty: https://en.bitcoin.it/wiki/Difficulty

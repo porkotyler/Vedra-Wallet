@@ -1,0 +1,280 @@
+Use the following instructions to setup a mining pool for a SHA-256 based coin.
+
+Update your Ubuntu machine.
+sudo apt-get update
+sudo apt-get upgrade
+
+Install the required dependencies.
+sudo apt-get install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils python3 libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev libboost-all-dev libboost-program-options-dev
+sudo apt-get install libminiupnpc-dev libzmq3-dev libprotobuf-dev protobuf-compiler libqrencode-dev unzip software-properties-common redis-server npm git screen
+
+Install Berkeley DB.
+sudo add-apt-repository ppa:bitcoin/bitcoin
+sudo apt-get update
+sudo apt-get install libdb4.8-dev libdb4.8++-dev
+
+Go to your home directory.
+cd $HOME
+
+Note: replace “examplecoin” with the name of your coin.
+Note: replace “6gs39011kick8xmqutpkrvi92xx5kwev4ykanlv1ls0ouuae5x” with the coinID of your coin.
+
+Download the daemon and tools from MyCoin. (Available for a paid coin)
+wget "https://dl.walletbuilders.com/download?customer=6gs39011kick8xmqutpkrvi92xx5kwev4ykanlv1ls0ouuae5x&filename=examplecoin-daemon-linux.tar.gz" -O examplecoin-daemon-linux.tar.gz
+wget "https://dl.walletbuilders.com/download?customer=6gs39011kick8xmqutpkrvi92xx5kwev4ykanlv1ls0ouuae5x&filename=examplecoin-qt-linux.tar.gz" -O examplecoin-qt-linux.tar.gz
+
+Extract the tar files.
+tar -xzvf examplecoin-daemon-linux.tar.gz
+tar -xzvf examplecoin-qt-linux.tar.gz
+
+Install the daemon and tools.
+sudo mv examplecoind examplecoin-cli examplecoin-tx /usr/bin/
+
+Create the config file.
+mkdir $HOME/.examplecoin
+nano $HOME/.examplecoin/examplecoin.conf
+
+Paste the following lines in examplecoin.conf.
+rpcuser=rpc_examplecoin
+rpcpassword=CNsahKWiZpMzFxdvb9R7vKuAvYWRXqr24EfCkdjz
+rpcallowip=127.0.0.1
+listen=1
+server=1
+txindex=1
+daemon=1
+paytxfee=0.0002
+deprecatedrpc=accounts
+addresstype=legacy
+
+Start your daemon with the following command.
+examplecoind
+
+Show your wallet address.
+examplecoin-cli getaccountaddress ""
+
+Example output.
+4UyrFQrAoNQMEMqNhZTareRmjeU68bLiop
+
+Keep note of the wallet address.
+
+Download Nomp.
+git clone https://github.com/zone117x/node-open-mining-portal.git nomp
+cd nomp
+npm update
+
+Create the config file for the pool website.
+cp config_example.json config.json
+
+Open the config file.
+nano config.json
+
+Change the marked values with the external IP address of your VPS.
+
+Original config.json.
+
+
+    "website": {
+        "enabled": true,
+        "host": 0.0.0.0",
+        "port": 80,
+        "stratumHost": "cryppit.com",
+        "stats": {
+            "updateInterval": 60,
+            "historicalRetention": 43200,
+            "hashrateWindow": 300
+        },
+        "adminCenter": {
+            "enabled": false,
+            "password": "password"
+        }
+    },
+
+
+Example config.json.
+
+
+    "website": {
+        "enabled": true,
+        "host": "198.51.100.2",
+        "port": 80,
+        "stratumHost": "198.51.100.2",
+        "stats": {
+            "updateInterval": 60,
+            "historicalRetention": 43200,
+            "hashrateWindow": 300
+        },
+        "adminCenter": {
+            "enabled": false,
+            "password": "password"
+        }
+    },
+
+
+Create the config file for the coin.
+cd coins
+cp bitcoin.json examplecoin.json
+
+Open the config file.
+nano examplecoin.json
+
+Change the marked values with the name and abbreviation of your coin.
+
+Original examplecoin.json.
+
+
+{
+    "name": "Bitcoin",
+    "symbol": "BTC",
+    "algorithm": "sha256"
+}
+
+
+Example examplecoin.json.
+
+
+{
+    "name": "Examplecoin",
+    "symbol": "EXP",
+    "algorithm": "sha256"
+}
+
+
+Create the config file for the pool.
+cd ../pool_configs
+cp litecoin_example.json examplecoin_pool.json
+
+Open the config file.
+nano examplecoin_pool.json
+
+Change the marked values.
+
+enabled - Change the value “false” to “true”.
+
+coin - Change the value “litecoin.json” to “examplecoin.json”.
+
+address - Change the value “n4jSe18kZMCdGcZqaYprShXW6EH1wivUK1” to the “wallet address” that you created using the command “getaccountaddress ""”.
+
+rewardRecipients - Remove the marked lines.
+
+minimumPayment - Change the value “70” to “0.01”.
+
+port - Change the value “19332“ to the “rpcport“ value set in the config file of your coin.
+
+user - Change the value “testuser” to the “rpcuser“ value set in the config file of your coin.
+
+password - Change the value “testpass” to the “rpcpassword“ value set in the config file of your coin.
+
+p2p - enabled - Change the value “true” to “false”.
+
+Original examplecoin_pool.json.
+
+
+{
+    "enabled": false,
+    "coin": "litecoin.json",
+
+    "address": "n4jSe18kZMCdGcZqaYprShXW6EH1wivUK1",
+
+    "rewardRecipients": {
+        "n37vuNFkXfk15uFnGoVyHZ6PYQxppD3QqK": 1.5,
+        "22851477d63a085dbc2398c8430af1c09e7343f6": 0.1
+    },
+
+    "paymentProcessing": {
+        "enabled": true,
+        "paymentInterval": 20,
+        "minimumPayment": 70,
+        "daemon": {
+            "host": "127.0.0.1",
+            "port": 19332,
+            "user": "testuser",
+            "password": "testpass"
+        }
+    },
+...
+    "daemons": [
+        {
+            "host": "127.0.0.1",
+            "port": 19332,
+            "user": "testuser",
+            "password": "testpass"
+        }
+    ],
+
+    "p2p": {
+        "enabled": true,
+        "host": "127.0.0.1",
+        "port": 19333,
+        "disableTransactions": true
+    },
+
+
+Example examplecoin_pool.json.
+
+{
+    "enabled": true,
+    "coin": "examplecoin.json",
+
+    "address": "4UyrFQrAoNQMEMqNhZTareRmjeU68bLiop",
+
+    "rewardRecipients": {
+             
+    },
+
+    "paymentProcessing": {
+        "enabled": true,
+        "paymentInterval": 30,
+        "minimumPayment": 0.01,
+        "daemon": {
+            "host": "127.0.0.1",
+            "port": 4201,
+            "user": "rpc_examplecoin",
+            "password": "CNsahKWiZpMzFxdvb9R7vKuAvYWRXqr24EfCkdjz"
+        }
+    },
+...
+    "daemons": [
+        {
+            "host": "127.0.0.1",
+            "port": 4201,
+            "user": "rpc_examplecoin",
+            "password": "CNsahKWiZpMzFxdvb9R7vKuAvYWRXqr24EfCkdjz"
+        }
+    ],
+
+    "p2p": {
+        "enabled": false,
+        "host": "127.0.0.1",
+        "port": 19333,
+        "disableTransactions": true
+    },
+
+
+A screen session will remain open when the SSH connection is disconnected.
+You can disconnect from a screen session using the keyboard combination ctrl + a + d.
+
+Start a screen session.
+screen
+
+Start your mining pool.
+cd $HOME/nomp
+sudo node init.js
+
+You can access the mining pool on the IP of your VPS.
+
+E.G. http://198.51.100.2
+
+Mining instructions
+
+Download the latest version of cpuminer from here and extract the zip file.
+
+Create a .bat file named mine_pool.bat in the same folder where you extracted cpuminer and paste the following text into mine_pool.bat.
+minerd -a sha256d -o stratum+tcp://198.51.100.2:3008 -u TP56yqPtRTkse49B96sHzo2B6v48MV24vP -p anything
+
+198.51.100.2 - Change the value “198.51.100.2” with the IP address of your VPS.
+
+TP56yqPtRTkse49B96sHzo2B6v48MV24vP - Change the value “TP56yqPtRTkse49B96sHzo2B6v48MV24vP” with a valid wallet address.
+
+Save the file.
+
+Execute mine_pool.bat to start mining.

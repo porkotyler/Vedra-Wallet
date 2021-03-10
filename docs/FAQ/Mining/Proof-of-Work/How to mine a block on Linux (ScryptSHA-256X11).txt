@@ -1,0 +1,64 @@
+Use the following instructions to mine a block on Ubuntu Server 18.04.
+
+Update your Ubuntu machine.
+sudo apt-get update
+sudo apt-get upgrade
+
+Install the required dependencies.
+sudo apt-get install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils python3 libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev libboost-all-dev libboost-program-options-dev
+sudo apt-get install libminiupnpc-dev libzmq3-dev libprotobuf-dev protobuf-compiler unzip software-properties-common
+
+Install Berkeley DB.
+sudo add-apt-repository ppa:bitcoin/bitcoin
+sudo apt-get update
+sudo apt-get install libdb4.8-dev libdb4.8++-dev
+
+Note: replace “examplecoin” with the name of your coin.
+Note: replace “6gs39011kick8xmqutpkrvi92xx5kwev4ykanlv1ls0ouuae5x” with the coinID of your coin.
+
+Download the daemon and tools from MyCoin. (Available for a paid coin)
+wget "https://dl.walletbuilders.com/download?customer=6gs39011kick8xmqutpkrvi92xx5kwev4ykanlv1ls0ouuae5x&filename=examplecoin-daemon-linux.tar.gz" -O examplecoin-daemon-linux.tar.gz
+wget "https://dl.walletbuilders.com/download?customer=6gs39011kick8xmqutpkrvi92xx5kwev4ykanlv1ls0ouuae5x&filename=examplecoin-qt-linux.tar.gz" -O examplecoin-qt-linux.tar.gz
+
+Extract the tar files.
+tar -xzvf examplecoin-daemon-linux.tar.gz
+tar -xzvf examplecoin-qt-linux.tar.gz
+
+Install the daemon and tools.
+sudo mv examplecoind examplecoin-cli examplecoin-tx /usr/bin/
+
+Create the config file.
+mkdir $HOME/.examplecoin
+nano $HOME/.examplecoin/examplecoin.conf
+
+Paste the following lines in examplecoin.conf.
+rpcuser=rpc_examplecoin
+rpcpassword=69c863e3356d3dae95df454a1
+rpcallowip=127.0.0.1
+listen=1
+server=1
+txindex=1
+daemon=1
+
+Start the daemon.
+examplecoind
+
+Create a .sh file named mine.sh in the same folder where you extracted example-cli with the following content.
+#!/bin/bash
+SCRIPT_PATH=`pwd`;
+cd $SCRIPT_PATH
+echo Press [CTRL+C] to stop mining.
+while :
+do
+./examplecoin-cli generate 1
+done
+
+Save the file mine.sh.
+
+Make the file executable.
+chmod +x mine.sh
+
+Execute mine.sh to start mining your first block.
+./mine.sh
+
+It will take about +/- 30 minutes to mine your first block, depending on your computer hardware.

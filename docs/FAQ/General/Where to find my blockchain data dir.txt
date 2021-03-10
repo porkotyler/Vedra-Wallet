@@ -1,0 +1,7 @@
+The table shows the default blockchain data directory per operating system.
+
+Note: replace “examplecoin” with the name of your coin.
+Operating System 	Default datadir 	Typical path to configuration file
+Windows 7, 8.1, 10 	 %APPDATA%\examplecoin\ 	C:\Users\username\AppData\Roaming\examplecoin\examplecoin.conf
+Linux 	$HOME/.examplecoin/ 	/home/username/.examplecoin/examplecoin.conf
+macOS 	$HOME/Library/Application Support/Examplecoin/ 	/Users/username/Library/Application Support/Examplecoin/examplecoin.conf

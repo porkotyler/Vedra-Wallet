@@ -1,0 +1,61 @@
+Use the following instructions to setup a node on CentOS 7.
+
+Update your CentOS machine.
+yum update -y
+
+Install the EPEL repository.
+yum install -y epel-release
+
+Install the required dependencies.
+yum install -y autoconf automake boost-devel gcc-c++ git libdb4-cxx libdb4-cxx-devel libevent-devel libtool openssl-devel wget nano unzip
+yum install -y zeromq-devel python-devel bzip2-devel qt5-qttools-devel protobuf-devel qrencode-devel
+
+Install Berkeley DB from source code.
+cd $HOME
+wget https://download.oracle.com/berkeley-db/db-4.8.30.zip
+unzip db-4.8.30.zip
+cd db-4.8.30
+cd build_unix/
+../dist/configure --prefix=/usr/local --enable-cxx
+make
+make install
+
+Create a directory for the source code.
+cd $HOME
+mkdir source_code
+cd source_code
+
+Note: replace “examplecoin” with the name of your coin.
+Note: replace “6gs39011kick8xmqutpkrvi92xx5kwev4ykanlv1ls0ouuae5x” with the coinID of your coin.
+
+Download the source code from MyCoin. (Available for a paid coin)
+wget "https://dl.walletbuilders.com/download?customer=6gs39011kick8xmqutpkrvi92xx5kwev4ykanlv1ls0ouuae5x&filename=examplecoin-source.tar.gz" -O examplecoin-source.tar.gz
+
+Extract the tar file.
+tar -xzvf examplecoin-source.tar.gz
+
+Execute the following commands to compile the daemon.
+./autogen.sh
+./configure
+make
+
+The compiling will take about 60 minutes depending on your system hardware.
+
+Install the daemon.
+cp src/examplecoind src/examplecoin-cli src/examplecoin-tx /usr/bin/
+
+Create the config file.
+mkdir $HOME/.examplecoin
+nano $HOME/.examplecoin/examplecoin.conf
+
+Paste the following lines in examplecoin.conf.
+rpcuser=rpc_examplecoin
+rpcpassword=69c863e3356d3dae95df454a1
+rpcallowip=127.0.0.1
+listen=1
+server=1
+txindex=1
+daemon=1
+
+Start your node with the following command.
+examplecoind
